@@ -57,7 +57,7 @@ export default function VSCodePortfolio() {
       <WindowControls />
       <div className="flex flex-1 overflow-hidden">
         <div className="hidden md:flex flex-col h-full">
-          <SocialBar onEmailClick={() => handleTabClick('Contact.js')} />
+          <SocialBar onEmailClick={() => handleTabClick('Contact.js')} setActiveFile={handleTabClick} />
         </div>
         <div className="hidden md:flex flex-col h-full">
           <Sidebar activeFile={activeTab} setActiveFile={handleTabClick} />

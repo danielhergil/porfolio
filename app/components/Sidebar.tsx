@@ -27,7 +27,7 @@ export default function Sidebar({ activeFile, setActiveFile }) {
   const [isCollapsed, setIsCollapsed] = useState(false) // State to toggle folder visibility
 
   return (
-    <div className="w-64 bg-[#1e1e1e] border-r border-gray-700 h-full">
+    <div className="w-64 bg-[#1e1e1e] border-r border-gray-700 h-full bg-zinc-950">
       <div className="p-4 text-sm font-semibold text-gray-400">EXPLORER</div>
       <div className="px-4">
         {/* Portfolio Folder */}
