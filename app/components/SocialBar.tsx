@@ -35,7 +35,7 @@ export default function SocialBar({
         </button>
         {/* Social Icons */}
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/danielhergil"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-400 hover:text-white"
@@ -43,7 +43,7 @@ export default function SocialBar({
           <Github className="w-6 h-6" />
         </a>
         <a
-          href="https://linkedin.com/in/yourusername"
+          href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-gil-259877105/"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-400 hover:text-white"
