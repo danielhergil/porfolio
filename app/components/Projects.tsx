@@ -4,30 +4,36 @@ import Link from 'next/link'
 
 const projects = [
   {
-    title: "AI Chatbot",
-    description: "A sophisticated chatbot powered by machine learning and natural language processing",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
-    technologies: ["Python", "TensorFlow", "Flask"],
-    github: "https://github.com/yourusername/ai-chatbot",
-    demo: "https://ai-chatbot-demo.com",
+    title: "Time Register",
+    description: "Automate navigation with geo-positioning that are executed through API from a React Native app",
+    image: "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/playwright.svg",
+    technologies: ["Playwright", "Github Actions", "React Native"],
+    github: "https://github.com/danielhergil/time-register",
     color: "from-blue-500 to-purple-500"
   },
   {
-    title: "E-commerce Platform",
-    description: "Full-stack e-commerce solution with real-time inventory management",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    technologies: ["React", "Node.js", "MongoDB"],
-    github: "https://github.com/yourusername/ecommerce",
-    demo: "https://ecommerce-demo.com",
+    title: "FMP Scoreboard Front",
+    description: "React Native app that allow to configure a scoreboard and render it in a static website",
+    image: "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/react.svg",
+    technologies: ["React Native", "HTML/CSS", "Github Pages"],
+    github: "https://github.com/danielhergil/fmp-scoreboard-app",
+    demo: "https://danielhergil.github.io/fmp-scoreboard-app/",
     color: "from-green-500 to-teal-500"
   },
   {
-    title: "Weather Dashboard",
-    description: "Real-time weather tracking application with interactive maps",
-    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-    technologies: ["JavaScript", "Weather API", "D3.js"],
-    github: "https://github.com/yourusername/weather-app",
-    demo: "https://weather-demo.com",
+    title: "FMP Scoreboard Back",
+    description: "Very simple server that controls the scoreboard from FMP Scoreboard Front, deployed in Render",
+    image: "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/nodejs.svg",
+    technologies: ["Node JS", "Express"],
+    github: "https://github.com/danielhergil/fmp-scoreboard-back",
+    color: "from-yellow-500 to-orange-500"
+  },
+  {
+    title: "Calypso",
+    description: "Kotlin multi-platform app for streaming sports that allow rendering widgets (under development)",
+    image: "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/android.svg",
+    technologies: ["Kotlin", "Firebase", "NGINX", "K8s"],
+    github: "https://github.com/danielhergil/calypso-app",
     color: "from-yellow-500 to-orange-500"
   }
 ]
@@ -73,14 +79,16 @@ export default function Projects() {
                   <Github className="w-5 h-5" />
                   <span>Code</span>
                 </Link>
-                <Link
-                  href={project.demo}
-                  className="flex items-center space-x-2 text-gray-400 hover:text-white"
-                  target="_blank"
-                >
-                  <Globe className="w-5 h-5" />
-                  <span>Demo</span>
-                </Link>
+                {project.demo && (
+                  <Link
+                    href={project.demo}
+                    className="flex items-center space-x-2 text-gray-400 hover:text-white"
+                    target="_blank"
+                  >
+                    <Globe className="w-5 h-5" />
+                    <span>Demo</span>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
