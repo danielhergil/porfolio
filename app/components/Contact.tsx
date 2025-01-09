@@ -16,7 +16,7 @@ export default function Contact() {
               href="mailto:john.doe@example.com" 
               className="text-gray-400 hover:text-blue-400 transition-colors"
             >
-              john.doe@example.com
+              daniel.hergil@gmail.com
             </a>
           </div>
 
@@ -25,7 +25,7 @@ export default function Contact() {
               <MapPin className="w-6 h-6 text-purple-400" />
             </div>
             <h2 className="text-xl font-semibold text-white">Location</h2>
-            <p className="text-gray-400">San Francisco, CA</p>
+            <p className="text-gray-400">Madrid, Spain</p>
           </div>
 
           <div className="bg-[#2d2d2d] p-6 rounded-lg space-y-4">
@@ -41,38 +41,38 @@ export default function Contact() {
           <h2 className="text-xl font-semibold text-white mb-4 md:mb-6">Connect with me</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <a 
-              href="https://github.com/yourusername" 
+              href="https://github.com/danielhergil" 
               target="_blank"
               className="flex items-center space-x-3 p-4 rounded-lg bg-[#1e1e1e] hover:bg-[#2a2a2a] transition-colors"
             >
               <Github className="w-6 h-6" />
               <div>
                 <div className="font-medium text-white">GitHub</div>
-                <div className="text-sm text-gray-400">@yourusername</div>
+                <div className="text-sm text-gray-400">@danielhergil</div>
               </div>
             </a>
             
             <a 
-              href="https://linkedin.com/in/yourusername" 
+              href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-gil-259877105/" 
               target="_blank"
               className="flex items-center space-x-3 p-4 rounded-lg bg-[#1e1e1e] hover:bg-[#2a2a2a] transition-colors"
             >
               <Linkedin className="w-6 h-6" />
               <div>
                 <div className="font-medium text-white">LinkedIn</div>
-                <div className="text-sm text-gray-400">John Doe</div>
+                <div className="text-sm text-gray-400">Daniel Hernández Gil</div>
               </div>
             </a>
 
             <a 
-              href="https://yourportfolio.com" 
+              href="" 
               target="_blank"
               className="flex items-center space-x-3 p-4 rounded-lg bg-[#1e1e1e] hover:bg-[#2a2a2a] transition-colors"
             >
               <Globe className="w-6 h-6" />
               <div>
                 <div className="font-medium text-white">Portfolio</div>
-                <div className="text-sm text-gray-400">yourportfolio.com</div>
+                <div className="text-sm text-gray-400">Current Site</div>
               </div>
             </a>
 
@@ -83,7 +83,7 @@ export default function Contact() {
               <Phone className="w-6 h-6" />
               <div>
                 <div className="font-medium text-white">Phone</div>
-                <div className="text-sm text-gray-400">+1 (555) 123-4567</div>
+                <div className="text-sm text-gray-400">+34 680 50 96 43</div>
               </div>
             </a>
           </div>
