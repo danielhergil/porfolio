@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'VS Code Portfolio',
+  title: 'Dani HG - VSCode Portfolio',
   description: 'A portfolio website inspired by Visual Studio Code',
 }
 
