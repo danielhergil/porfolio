@@ -139,7 +139,7 @@ export default function TerminalComponent() {
   return (
     <div
       ref={terminalRef}
-      className="w-full h-full terminal-scrollbar"
+      className="w-full h-full pb-5 terminal-scrollbar"
       style={{ overflow: 'auto' }} // Enable scrolling
     />
   );

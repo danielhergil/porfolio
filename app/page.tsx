@@ -136,7 +136,7 @@ export default function VSCodePortfolio() {
               ✕
             </button>
           </div>
-          <div className="h-full w-full overflow-hidden">
+          <div className="h-48 w-full overflow-hidden">
             <TerminalComponent />
           </div>
         </div>
