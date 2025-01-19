@@ -22,8 +22,13 @@ const fileIcons = {
     "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/javascript.svg",
 }
 
+interface Tab {
+  name: string
+  icon: string
+}
+
 export default function VSCodePortfolio() {
-  const [openTabs, setOpenTabs] = useState(["Home.jsx"])
+  const [openTabs, setOpenTabs] = useState<Tab[]>([{ name: "Home.jsx", icon: fileIcons["Home.jsx"] }])
   const [activeTab, setActiveTab] = useState("Home.jsx")
   const [isTerminalOpen, setIsTerminalOpen] = useState(false)
   const [terminalHeight, setTerminalHeight] = useState(200)
@@ -56,18 +61,22 @@ export default function VSCodePortfolio() {
   }, [isTerminalOpen])
 
   const handleTabClick = (fileName: string) => {
-    if (!openTabs.includes(fileName)) {
-      setOpenTabs([...openTabs, fileName])
+    if (!openTabs.some((tab) => tab.name === fileName)) {
+      setOpenTabs([...openTabs, { name: fileName, icon: fileIcons[fileName] }])
     }
     setActiveTab(fileName)
   }
 
   const handleTabClose = (fileName: string) => {
-    const newTabs = openTabs.filter((tab) => tab !== fileName)
+    const newTabs = openTabs.filter((tab) => tab.name !== fileName)
     setOpenTabs(newTabs)
     if (activeTab === fileName) {
-      setActiveTab(newTabs[newTabs.length - 1] || "")
+      setActiveTab(newTabs[newTabs.length - 1]?.name || "")
     }
+  }
+
+  const handleTabsReorder = (newTabs: Tab[]) => {
+    setOpenTabs(newTabs)
   }
 
   const renderContent = () => {
@@ -128,10 +137,11 @@ export default function VSCodePortfolio() {
         {/* Main Content */}
         <div ref={mainContentRef} className="flex flex-col flex-1 overflow-hidden">
           <Tabs
-            tabs={openTabs.map((tab) => ({ name: tab, icon: fileIcons[tab] }))}
+            tabs={openTabs}
             activeTab={activeTab}
-            onTabClick={handleTabClick}
+            onTabClick={setActiveTab}
             onTabClose={handleTabClose}
+            onTabsReorder={handleTabsReorder}
           />
           <div className="flex-1 overflow-auto custom-scrollbar">{renderContent()}</div>
         </div>

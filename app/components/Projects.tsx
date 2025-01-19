@@ -32,7 +32,7 @@ const projects = [
     title: "Calypso",
     description: "Kotlin multi-platform app for streaming sports that allow rendering widgets (under development)",
     image: "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/android.svg",
-    technologies: ["Kotlin", "Firebase", "NGINX", "K8s"],
+    technologies: ["Kotlin", "Firebase", "NGINX", "Android"],
     github: "https://github.com/danielhergil/calypso-app",
     color: "from-yellow-500 to-orange-500"
   }
