@@ -64,7 +64,11 @@ export default function SocialBar({
         className="text-gray-400 hover:text-white mb-4"
         title="Terminal"
       >
-        <Terminal className="w-6 h-6" />
+        <img
+            src="/terminal.svg"
+            alt="Explorer"
+            className="w-8 h-8 transition-all hover:brightness-200"
+          />
       </button>
     </div>
   )
