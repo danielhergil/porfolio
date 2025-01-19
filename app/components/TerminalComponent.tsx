@@ -13,7 +13,11 @@ if (typeof window !== "undefined") {
 
 import "xterm/css/xterm.css"
 
-export default function TerminalComponent() {
+interface TerminalComponentProps {
+  height: number
+}
+
+export default function TerminalComponent({ height }: TerminalComponentProps) {
   const terminalRef = useRef<HTMLDivElement>(null)
   const terminalInstance = useRef<any>(null)
   const fitAddonInstance = useRef<any>(null)
@@ -121,17 +125,10 @@ export default function TerminalComponent() {
   }, [])
 
   useEffect(() => {
-    const handleResize = () => {
-      if (terminalInstance.current && fitAddonInstance.current) {
-        fitAddonInstance.current.fit()
-      }
+    if (terminalInstance.current && fitAddonInstance.current) {
+      fitAddonInstance.current.fit()
     }
-
-    window.addEventListener("resize", handleResize)
-    return () => {
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [])
+  }, [height])
 
   return <div ref={terminalRef} className="w-full h-full" style={{ overflow: "hidden" }} />
 }

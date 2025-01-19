@@ -26,6 +26,7 @@ export default function VSCodePortfolio() {
   const [openTabs, setOpenTabs] = useState(["Home.jsx"])
   const [activeTab, setActiveTab] = useState("Home.jsx")
   const [isTerminalOpen, setIsTerminalOpen] = useState(false)
+  const [terminalHeight, setTerminalHeight] = useState(200)
   const mainContentRef = useRef<HTMLDivElement>(null)
   const [contentWidth, setContentWidth] = useState(0)
 
@@ -84,6 +85,25 @@ export default function VSCodePortfolio() {
     }
   }
 
+  const handleTerminalResize = (e: React.MouseEvent<HTMLDivElement>) => {
+    const startY = e.clientY
+    const startHeight = terminalHeight
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const deltaY = startY - e.clientY
+      const newHeight = Math.max(100, Math.min(startHeight + deltaY, window.innerHeight - 100))
+      setTerminalHeight(newHeight)
+    }
+
+    const handleMouseUp = () => {
+      document.removeEventListener("mousemove", handleMouseMove)
+      document.removeEventListener("mouseup", handleMouseUp)
+    }
+
+    document.addEventListener("mousemove", handleMouseMove)
+    document.addEventListener("mouseup", handleMouseUp)
+  }
+
   return (
     <div className="flex flex-col h-screen text-gray-300 bg-[#1e1e1e]">
       <WindowControls />
@@ -121,18 +141,22 @@ export default function VSCodePortfolio() {
         <div
           className="absolute bottom-0 left-[19rem] right-0 bg-[#1e1e1e] border-t border-gray-700 z-50"
           style={{
-            height: "200px",
+            height: `${terminalHeight}px`,
             pointerEvents: "auto",
           }}
         >
+          <div
+            className="absolute top-0 left-0 right-0 h-1 bg-gray-700 cursor-row-resize"
+            onMouseDown={handleTerminalResize}
+          />
           <div className="flex justify-between items-center bg-[#2d2d2d] text-gray-400 px-4 py-1 border-b border-gray-700">
             <span>Terminal</span>
             <button onClick={() => setIsTerminalOpen(false)} className="text-gray-400 hover:text-red-500">
               ✕
             </button>
           </div>
-          <div className="h-[168px] w-full overflow-hidden">
-            <TerminalComponent />
+          <div className="h-[calc(100%-32px)] w-full overflow-hidden">
+            <TerminalComponent height={terminalHeight - 32} />
           </div>
         </div>
       )}
