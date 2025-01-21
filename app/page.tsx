@@ -11,6 +11,7 @@ import Projects from "./components/Projects"
 import Contact from "./components/Contact"
 import MobileNav from "./components/MobileNav"
 import TerminalComponent from "./components/TerminalComponent"
+import CICDPipeline from "./components/CICDPipeline"
 
 const fileIcons = {
   "Home.jsx": "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/react.svg",
@@ -20,6 +21,7 @@ const fileIcons = {
     "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/json.svg",
   "Contact.js":
     "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/javascript.svg",
+  "Demofile": "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/docker.svg",
 }
 
 interface Tab {
@@ -34,6 +36,8 @@ export default function VSCodePortfolio() {
   const [terminalHeight, setTerminalHeight] = useState(200)
   const mainContentRef = useRef<HTMLDivElement>(null)
   const [contentWidth, setContentWidth] = useState(0)
+  const [userName, setUserName] = useState("")
+  const [projectName, setProjectName] = useState("")
 
   useEffect(() => {
     const updateContentWidth = () => {
@@ -89,6 +93,15 @@ export default function VSCodePortfolio() {
         return <Projects />
       case "Contact.js":
         return <Contact />
+      case "Demofile":
+        return (
+          <CICDPipeline
+            userName={userName}
+            setUserName={setUserName}
+            projectName={projectName}
+            setProjectName={setProjectName}
+          />
+        )
       default:
         return null
     }
@@ -111,6 +124,10 @@ export default function VSCodePortfolio() {
 
     document.addEventListener("mousemove", handleMouseMove)
     document.addEventListener("mouseup", handleMouseUp)
+  }
+
+  const isUserInfoFilled = () => {
+    return userName.trim() !== "" && projectName.trim() !== ""
   }
 
   return (
@@ -160,13 +177,17 @@ export default function VSCodePortfolio() {
             onMouseDown={handleTerminalResize}
           />
           <div className="flex justify-between items-center bg-[#2d2d2d] text-gray-400 px-4 py-1 border-b border-gray-700">
-            <span>Terminal</span>
+            <span>Terminal of Wonders</span>
             <button onClick={() => setIsTerminalOpen(false)} className="text-gray-400 hover:text-red-500">
               ✕
             </button>
           </div>
           <div className="h-[calc(100%-32px)] w-full overflow-hidden">
-            <TerminalComponent height={terminalHeight - 32} />
+            <TerminalComponent
+              height={terminalHeight - 32}
+              onRunPipeline={() => handleTabClick("Demofile")}
+              isUserInfoFilled={isUserInfoFilled}
+            />
           </div>
         </div>
       )}
