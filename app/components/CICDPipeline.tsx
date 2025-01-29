@@ -307,7 +307,7 @@ export default function CICDPipeline() {
       await fetch(`https://api.vercel.com/v9/projects/ephimeral-project-${formatInputForUrl(inputName)}`, {
         method: 'DELETE',
         headers: {
-          Authorization: `Bearer ${process.env.VERCEL_TOKEN}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_VERCEL_TOKEN}`,
         },
       });
     } catch (err) {
@@ -433,7 +433,7 @@ export default function CICDPipeline() {
                   <p className="text-green-400">
                     Deployment successful! Your site will be available for:
                   </p>
-                  <div className="text-2xl font-bold text-green-400 mt-2">10 minutes</div>
+                  <div className="text-2xl font-bold text-green-400 mt-2">5 minutes</div>
                 </div>
                 <a
                   href={deploymentUrl}
