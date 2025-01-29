@@ -11,6 +11,8 @@ import Projects from "./components/Projects"
 import Contact from "./components/Contact"
 import MobileNav from "./components/MobileNav"
 import TerminalComponent from "./components/TerminalComponent"
+import CICDPipeline from "./components/CICDPipeline"
+import { BellRing, GitBranch } from "lucide-react"
 
 const fileIcons = {
   "Home.jsx": "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/react.svg",
@@ -20,6 +22,7 @@ const fileIcons = {
     "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/json.svg",
   "Contact.js":
     "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/javascript.svg",
+  "Demofile": "https://raw.githubusercontent.com/material-extensions/vscode-material-icon-theme/main/icons/docker.svg",
 }
 
 interface Tab {
@@ -34,6 +37,8 @@ export default function VSCodePortfolio() {
   const [terminalHeight, setTerminalHeight] = useState(200)
   const mainContentRef = useRef<HTMLDivElement>(null)
   const [contentWidth, setContentWidth] = useState(0)
+  const [userName, setUserName] = useState("")
+  const [projectName, setProjectName] = useState("")
 
   useEffect(() => {
     const updateContentWidth = () => {
@@ -89,6 +94,15 @@ export default function VSCodePortfolio() {
         return <Projects />
       case "Contact.js":
         return <Contact />
+      case "Demofile":
+        return (
+          <CICDPipeline
+            userName={userName}
+            setUserName={setUserName}
+            projectName={projectName}
+            setProjectName={setProjectName}
+          />
+        )
       default:
         return null
     }
@@ -111,6 +125,10 @@ export default function VSCodePortfolio() {
 
     document.addEventListener("mousemove", handleMouseMove)
     document.addEventListener("mouseup", handleMouseUp)
+  }
+
+  const isUserInfoFilled = () => {
+    return userName.trim() !== "" && projectName.trim() !== ""
   }
 
   return (
@@ -149,7 +167,7 @@ export default function VSCodePortfolio() {
       {/* Terminal */}
       {isTerminalOpen && (
         <div
-          className="absolute bottom-0 left-[19rem] right-0 bg-[#1e1e1e] border-t border-gray-700 z-50"
+          className="absolute bottom-6 left-[19rem] right-0 bg-[#1e1e1e] border-t border-gray-700 z-40"
           style={{
             height: `${terminalHeight}px`,
             pointerEvents: "auto",
@@ -160,17 +178,43 @@ export default function VSCodePortfolio() {
             onMouseDown={handleTerminalResize}
           />
           <div className="flex justify-between items-center bg-[#2d2d2d] text-gray-400 px-4 py-1 border-b border-gray-700">
-            <span>Terminal</span>
+            <span>Terminal of Wonders</span>
             <button onClick={() => setIsTerminalOpen(false)} className="text-gray-400 hover:text-red-500">
               ✕
             </button>
           </div>
           <div className="h-[calc(100%-32px)] w-full overflow-hidden">
-            <TerminalComponent height={terminalHeight - 32} />
+            <TerminalComponent
+              height={terminalHeight - 22}
+              onRunPipeline={() => handleTabClick("Demofile")}
+              isUserInfoFilled={isUserInfoFilled}
+            />
           </div>
         </div>
       )}
       <MobileNav activeTab={activeTab} setActiveTab={handleTabClick} />
+      {/* Footer */}
+      <div className="h-[24px] bg-gray-700 text-white text-xs flex items-center justify-between px-2 z-50 relative">
+        <div className="flex items-center space-x-2">
+          <button className="flex items-center space-x-2 hover:bg-[#5e6a72] px-1 rounded" onClick={() => window.open('https://github.com/danielhergil', '_blank')}>
+            <GitBranch className="w-4 h-4" />
+            <span>main</span>
+          </button>
+        </div>
+        <div className="flex items-center space-x-4">
+          <button className="hover:bg-[#5e6a72] px-1">Spaces: 2</button>
+          <button className="hover:bg-[#5e6a72] px-1">UTF-8</button>
+          <button className="hover:bg-[#5e6a72] px-1">CRLF</button>
+          <button className="hover:bg-[#5e6a72] px-1">{"{}"} JavaScript JSX</button>
+          <button className="flex items-center space-x-1 hover:bg-[#5e6a72] px-1">
+            <img src="double-tick.svg" alt="DoubleTick" className="w-5 h-5 " style={{ filter: 'brightness(0) invert(1)' }}/>
+            <span>Prettier</span>
+          </button>
+          <button className="hover:bg-[#5e6a72] px-1">
+          <BellRing className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
     </div>
   )
 }

@@ -20,7 +20,7 @@ interface TerminalComponentProps {
 export default function TerminalComponent({ height }: TerminalComponentProps) {
   const terminalRef = useRef<HTMLDivElement>(null)
   const terminalInstance = useRef<any>(null)
-  const fitAddonInstance = useRef<any>(null)
+  const fitAddonRef = useRef<any>(null)
 
   const commands = {
     ls: "Desktop Documents Downloads Pictures Videos",
@@ -37,13 +37,13 @@ export default function TerminalComponent({ height }: TerminalComponentProps) {
   }
 
   const printWelcomeMessage = () => {
-    terminalInstance.current?.writeln("Welcome to the VSCode Terminal!")
-    terminalInstance.current?.writeln("Type some commands to explore.")
+    terminalInstance.current?.writeln("Welcome to the VSCode Terminal.")
+    terminalInstance.current?.writeln("Type a command to get started.")
     terminalInstance.current?.writeln("Available commands:")
-    terminalInstance.current?.writeln("  ls       - List directory contents")
-    terminalInstance.current?.writeln("  pwd      - Print working directory")
-    terminalInstance.current?.writeln("  echo     - Echo input text")
-    terminalInstance.current?.writeln("  clear    - Clear the terminal")
+    terminalInstance.current?.writeln("  ls    - List the contents of the directory")
+    terminalInstance.current?.writeln("  pwd   - Print the current directory")
+    terminalInstance.current?.writeln("  echo  - Display a line of text")
+    terminalInstance.current?.writeln("  clear - Clear the terminal")
     printPrompt()
   }
 
@@ -90,7 +90,7 @@ export default function TerminalComponent({ height }: TerminalComponentProps) {
 
     terminal.open(terminalRef.current)
     terminalInstance.current = terminal
-    fitAddonInstance.current = fitAddon
+    fitAddonRef.current = fitAddon
 
     fitAddon.fit()
 
@@ -120,16 +120,15 @@ export default function TerminalComponent({ height }: TerminalComponentProps) {
     return () => {
       terminal.dispose()
       terminalInstance.current = null
-      fitAddonInstance.current = null
+      fitAddonRef.current = null
     }
   }, [])
 
   useEffect(() => {
-    if (terminalInstance.current && fitAddonInstance.current) {
-      fitAddonInstance.current.fit()
+    if (terminalInstance.current && fitAddonRef.current) {
+      fitAddonRef.current.fit()
     }
   }, [height])
 
   return <div ref={terminalRef} className="w-full h-full" style={{ overflow: "hidden" }} />
 }
-
