@@ -15,11 +15,9 @@ import "xterm/css/xterm.css"
 
 interface TerminalComponentProps {
   height: number
-  onRunPipeline: () => void
-  isUserInfoFilled: () => boolean
 }
 
-export default function TerminalComponent({ height, onRunPipeline, isUserInfoFilled }: TerminalComponentProps) {
+export default function TerminalComponent({ height }: TerminalComponentProps) {
   const terminalRef = useRef<HTMLDivElement>(null)
   const terminalInstance = useRef<any>(null)
   const fitAddonRef = useRef<any>(null)
@@ -32,19 +30,6 @@ export default function TerminalComponent({ height, onRunPipeline, isUserInfoFil
       terminalInstance.current?.clear()
       printWelcomeMessage()
     },
-    pipeline: () => {
-      if (isUserInfoFilled()) {
-        terminalInstance.current?.writeln("\r\nFasten your seatbelts! Initiating the CI/CD rollercoaster ride...")
-        onRunPipeline()
-      } else {
-        terminalInstance.current?.writeln(
-          "\r\nOops! Looks like we're missing some crucial ingredients for our deployment potion.",
-        )
-        terminalInstance.current?.writeln(
-          "Please fill in your Superhero Name and Project's Secret Identity in the Demofile first!",
-        )
-      }
-    },
   }
 
   const printPrompt = () => {
@@ -52,14 +37,13 @@ export default function TerminalComponent({ height, onRunPipeline, isUserInfoFil
   }
 
   const printWelcomeMessage = () => {
-    terminalInstance.current?.writeln("Welcome to the VSCode Terminal of Wonders!")
-    terminalInstance.current?.writeln("Type some magical commands to explore this digital realm.")
-    terminalInstance.current?.writeln("Available spells:")
-    terminalInstance.current?.writeln("  ls       - List the secrets of this directory")
-    terminalInstance.current?.writeln("  pwd      - Reveal your current location in the digital universe")
-    terminalInstance.current?.writeln("  echo     - Make the terminal repeat after you (it's a bit of a copycat)")
-    terminalInstance.current?.writeln("  clear    - Wipe the slate clean (perfect for hiding evidence)")
-    terminalInstance.current?.writeln("  pipeline - Initiate the Spectacular CI/CD Adventure!")
+    terminalInstance.current?.writeln("Welcome to the VSCode Terminal.")
+    terminalInstance.current?.writeln("Type a command to get started.")
+    terminalInstance.current?.writeln("Available commands:")
+    terminalInstance.current?.writeln("  ls    - List the contents of the directory")
+    terminalInstance.current?.writeln("  pwd   - Print the current directory")
+    terminalInstance.current?.writeln("  echo  - Display a line of text")
+    terminalInstance.current?.writeln("  clear - Clear the terminal")
     printPrompt()
   }
 
@@ -78,13 +62,11 @@ export default function TerminalComponent({ height, onRunPipeline, isUserInfoFil
         terminalInstance.current?.write(`\r\n${commands[cmd](args)}`)
       } else if (cmd === "clear") {
         commands[cmd]()
-      } else if (cmd === "pipeline") {
-        commands[cmd]()
       } else {
         terminalInstance.current?.write(`\r\n${commands[cmd]}`)
       }
     } else {
-      terminalInstance.current?.write(`\r\nUnknown spell: ${cmd}. Are you sure you're pronouncing it correctly?`)
+      terminalInstance.current?.write(`\r\nCommand not found: ${cmd}`)
     }
 
     printPrompt()
@@ -150,4 +132,3 @@ export default function TerminalComponent({ height, onRunPipeline, isUserInfoFil
 
   return <div ref={terminalRef} className="w-full h-full" style={{ overflow: "hidden" }} />
 }
-
