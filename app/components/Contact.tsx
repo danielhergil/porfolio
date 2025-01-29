@@ -33,7 +33,7 @@ export default function Contact() {
               <Calendar className="w-6 h-6 text-green-400" />
             </div>
             <h2 className="text-xl font-semibold text-white">Availability</h2>
-            <p className="text-gray-400">Phone and Email (preferred)</p>
+            <p className="text-gray-400">Phone and Email/Linkedin (preferred)</p>
           </div>
         </div>
 
