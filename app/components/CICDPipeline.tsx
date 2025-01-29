@@ -33,7 +33,7 @@ export default function CICDPipeline() {
     () => localStorage.getItem(LOCAL_STORAGE_KEYS.DEPLOYMENT_URL) || ''
   );
   const [countdown, setCountdown] = useState(
-    () => parseInt(localStorage.getItem(LOCAL_STORAGE_KEYS.COUNTDOWN) || '60', 10)
+    () => parseInt(localStorage.getItem(LOCAL_STORAGE_KEYS.COUNTDOWN) || '300', 10)
   );
   const [error, setError] = useState('');
   const [workflowRunId, setWorkflowRunId] = useState<number | null>(
@@ -83,7 +83,7 @@ export default function CICDPipeline() {
     setInputName('');
     setDeploymentStatus('idle');
     setDeploymentUrl('');
-    setCountdown(60);
+    setCountdown(300);
     setError('');
     setWorkflowRunId(null);
 
@@ -96,7 +96,7 @@ export default function CICDPipeline() {
       const countdownStartTime = localStorage.getItem(LOCAL_STORAGE_KEYS.COUNTDOWN_START_TIME);
       const startTime = countdownStartTime ? parseInt(countdownStartTime, 10) : Date.now();
       const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
-      const remainingTime = Math.max(60 - elapsedTime, 0);
+      const remainingTime = Math.max(300 - elapsedTime, 0);
 
       setCountdown(remainingTime);
 
