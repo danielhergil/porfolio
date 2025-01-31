@@ -194,7 +194,7 @@ export default function VSCodePortfolio() {
       )}
       <MobileNav activeTab={activeTab} setActiveTab={handleTabClick} />
       {/* Footer */}
-      <div className="h-[24px] bg-gray-700 text-white text-xs flex items-center justify-between px-2 z-50 relative">
+      <div className="hidden md:flex h-[24px] bg-gray-700 text-white text-xs items-center justify-between px-2 z-50 relative">
         <div className="flex items-center space-x-2">
           <button className="flex items-center space-x-2 hover:bg-[#5e6a72] px-1 rounded" onClick={() => window.open('https://github.com/danielhergil', '_blank')}>
             <GitBranch className="w-4 h-4" />
