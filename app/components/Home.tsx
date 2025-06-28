@@ -102,7 +102,7 @@ export default function Home() {
           <div className="relative w-full h-full rounded-full bg-gradient-to-b from-gray-800 to-gray-900 p-2 shadow-2xl">
             <div className="w-full h-full rounded-full bg-gray-900 p-1 border-4 border-gray-700">
               <Image
-                src="/avatar.png?height=400&width=400"
+                src="/avatar_old.jpg?height=400&width=400"
                 alt="Developer Avatar"
                 layout="fill"
                 objectFit="cover"
